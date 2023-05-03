@@ -1,2 +1,3 @@
 # myTestJenkins
-for test on jenkins pipeline and monitoring
+for testing on jenkins pipeline and monitoring
+and testing on prometheus
