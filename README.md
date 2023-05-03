@@ -1,3 +1,4 @@
-# myTestJenkins
-for testing on jenkins pipeline and monitoring
-and testing on prometheus
+# for learning Jenkins and Ansible
+
+added Jenkinsfile
+added check or install Prometheus and Grafana
