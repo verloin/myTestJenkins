@@ -1,9 +1,10 @@
 #
 ## INSTALL AND CONFIGURE PROMETHEUS AND GRAFANA
 #
+---
 - name: "Test playbook run"
-hosts: localhost
-task:
-  - name: "Debug"
-    debug:
-    msg: "test debug"
+  hosts: localhost
+  task:
+    - name: "Debug"
+      debug:
+      msg: "test debug"
