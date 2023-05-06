@@ -1,11 +1,10 @@
-#
-## INSTALL AND CONFIGURE PROMETHEUS AND GRAFANA
-#
 ---
-- name: "Test playbook run"
-  hosts: localhost
+- hosts: localhost
+  become: true
+  gather_facts: true
+
   tasks:
 
-    - name: "Debug"
-      debug:
-      msg: "host: {{ ansible_hostname }}"
+  - name: Show hostname
+    debug:
+      msg: "Host: {{ ansible_hostname }}"
