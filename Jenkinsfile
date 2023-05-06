@@ -1,7 +1,7 @@
 ANSIBLE_PLAYBOOK = 'monitoring.yml'
 ANSIBLE_INVENTORY_FILE = 'hosts'
 ANSIBLE_VAULT_ID = ''
-GIT_PROJECT = 'https://github.com/verloin/myTestJenkins.git'
+GIT_PROJECT = 'git@github.com:verloin/myTestJenkins.git'
 GET_BRANCH = 'main'
 
 pipeline {
@@ -17,14 +17,15 @@ pipeline {
                 echo "======================"
                 echo "PULL FROM GIT"
                 echo "======================"
-
+                git branch: GET_BRANCH, url: GIT_PROJECT
             }
         }
-        stage("Configure Prometheus with Ansible"){
+        stage("Configure Prometheus"){
             steps{
                 echo "======================"
                 echo "CONFIGURE PROMETHEUS"
                 echo "======================"
+                sh 'ansible-playbook monitoring.yml'
                 // script{
                 //     withEnv(){
                 //         ansiblePlaybook(
