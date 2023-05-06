@@ -4,7 +4,8 @@
 ---
 - name: "Test playbook run"
   hosts: localhost
-  task:
+  tasks:
+
     - name: "Debug"
       debug:
-      msg: "test debug"
+      msg: "host: {{ ansible_hostname }}"
