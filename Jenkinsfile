@@ -25,15 +25,15 @@ pipeline {
                 echo "======================"
                 echo "CONFIGURE PROMETHEUS"
                 echo "======================"
-                script{
-                    withEnv(){
-                        ansiblePlaybook(
-                            playbook: ANSIBLE_PLAYBOOK,
-                            inventory: ANSIBLE_INVENTORY_FILE,
-                            vaultCredentialsId: ANSIBLE_VAULT_ID,
-                            disableHostKeyChecking: true)
-                    }
-                }
+                // script{
+                //     withEnv(){
+                //         ansiblePlaybook(
+                //             playbook: ANSIBLE_PLAYBOOK,
+                //             inventory: ANSIBLE_INVENTORY_FILE,
+                //             vaultCredentialsId: ANSIBLE_VAULT_ID,
+                //             disableHostKeyChecking: true)
+                //     }
+                // }
             }
         }
     }
