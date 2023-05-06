@@ -2,7 +2,7 @@
 - hosts: localhost
   become: true
   gather_facts: true
-
+  deprecation_warnings: False
   tasks:
 
   - name: Show hostname

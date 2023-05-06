@@ -1,2 +1,2 @@
 [servers]
-prometheus ansible_host=10.0.0.109
+prometheus ansible_host=10.0.0.109 ansible_user=root
