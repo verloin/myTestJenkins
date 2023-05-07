@@ -1,10 +1,33 @@
 ---
-- hosts: localhost
-  become: true
-  gather_facts: true
-  # deprecation_warnings: False
-  tasks:
+- hosts: prometheus 
+  become: yes
+  remote_user: root
 
-  - name: Show hostname
-    debug:
-      msg: "Host: {{ ansible_hostname }}"
+  tasks:
+    - name: "Check if listed package is installed or not on Debian Linux family"
+      command: dpkg-query -l "{{ item }}"
+      loop: "{{ package_names }}"
+      register: debian_package_check
+      when: ansible_facts['os_family'] == "Debian"
+
+    - block:
+        - import_role:
+            name: prometheus
+      when: debian_package_check is failed
+
+
+# - hosts: grafana 
+#   become: yes
+#   remote_user: root
+
+#   tasks:
+#     - import_role:
+#         name: grafana
+
+# - hosts: node_exporter
+#   become: yes
+#   remote_user: root
+
+#   tasks:
+#     - import_role:
+#         name: node_exporter

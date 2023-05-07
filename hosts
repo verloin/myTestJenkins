@@ -1,2 +1,10 @@
 [servers]
-prometheus ansible_host=10.0.0.109 ansible_user=root
+prometheus ansible_host=10.0.0.109
+grafana ansible_host=10.0.0.109
+
+
+[prometheus]
+prometheus
+
+[grafana]
+grafana
