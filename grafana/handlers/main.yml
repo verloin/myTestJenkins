@@ -1,2 +1,6 @@
 ---
-# handlers file for grafana_check
+- name: restart grafana
+  systemd:
+    name: grafana-server
+    state: restarted
+  when: grafana_service_state != 'stopped'

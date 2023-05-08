@@ -2,6 +2,9 @@
 - hosts: prometheus 
   become: yes
   remote_user: root
+  vars:
+    package_names:
+      - prometheus
 
   tasks:
     - name: "Check if listed package is installed or not on Debian Linux family"
@@ -14,20 +17,3 @@
         - import_role:
             name: prometheus
       when: debian_package_check is failed
-
-
-# - hosts: grafana 
-#   become: yes
-#   remote_user: root
-
-#   tasks:
-#     - import_role:
-#         name: grafana
-
-# - hosts: node_exporter
-#   become: yes
-#   remote_user: root
-
-#   tasks:
-#     - import_role:
-#         name: node_exporter

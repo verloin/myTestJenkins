@@ -1,0 +1,44 @@
+---
+
+- name: GRAFANA | Config plugins
+  include_tasks: config-plugin.yml
+  with_items: "{{ grafana_plugins }}"
+
+- name: GRAFANA | Copy configuration
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/grafana/{{ item }}"
+    owner: "{{ grafana_user }}"
+    group: "{{ grafana_group }}"
+    mode: '0644'
+  notify: restart grafana
+  with_items:
+    - ldap.toml
+    - grafana.ini
+
+- name: GRAFANA | Configuring service
+  systemd:
+    name: grafana-server
+    state: "{{ grafana_service_state }}"
+    enabled: "{{ grafana_service_enabled }}"
+    daemon_reload: yes
+
+- name: GRAFANA | Wait for service listening
+  wait_for:
+    host: "{{ grafana_host }}"
+    port: "{{ grafana_port }}"
+    state: "{{ grafana_service_state }}"
+    timeout: "{{ grafana_service_timeout }}"
+
+- name: GRAFANA | Wait for health respond 200
+  uri:
+    url: "http://{{ ansible_nodename }}:{{ grafana_port }}/api/health"
+    status_code: "200"
+    method: GET
+    headers:
+      Accept: application/json
+  register: result
+  until: result.status == 200
+  retries: "{{ grafana_api_retries }}"
+  delay: 1
+  

@@ -1,2 +1,16 @@
 ---
-# tasks file for grafana_check
+
+- name: GRAFANA | Install
+  import_tasks: install.yml
+  tags:
+    - install
+
+- name: GRAFANA | Configure
+  import_tasks: configure.yml
+  tags:
+    - configure
+
+- name: GRAFANA | Datasource And Organisation
+  import_tasks: datasourceAndOrganization.yml
+  tags:
+    - datasource
