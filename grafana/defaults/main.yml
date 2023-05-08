@@ -34,7 +34,7 @@ grafana_serve_from_sub_path: false
 grafana_sub_path: ''
 
 ## DATABASE
-grafana_database_type: mysql
+grafana_database_type: sqlite3
 grafana_database_host: 127.0.0.1
 grafana_database_port: 3306
 grafana_database_database: grafana

@@ -10,9 +10,9 @@
     - name: Get stats of installed Prometheus
       ansible.builtin.stat:
         path: /etc/prometheus/prometheus.yml
-      register: exists
+      register: sys
 
     - block:
         - import_role:
             name: prometheus
-      when: exists.stat.exists is not defined
+      when: not sys.stat.exists

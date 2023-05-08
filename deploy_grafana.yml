@@ -7,13 +7,12 @@
       - grafana
 
   tasks:
-    - name: "Check if listed package is installed or not on Debian Linux family"
-      command: dpkg-query -l "{{ item }}"
-      loop: "{{ package_names }}"
-      register: debian_package_check
-      when: ansible_facts['os_family'] == "Debian"
+    - name: Get stats of installed Grafana
+      ansible.builtin.stat:
+        path: /etc/gafana/grafana.ini
+      register: sys
 
     - block:
         - import_role:
             name: grafana
-      when: debian_package_check is failed
+      when: not sys.stat.exists
