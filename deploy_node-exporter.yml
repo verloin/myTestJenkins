@@ -7,22 +7,22 @@
       - prometheus
 
   tasks:
-    - name: Get stats of installed Prometheus
+    - name: Get stats of installed node_exporter
       ansible.builtin.stat:
-        path: /etc/prometheus/prometheus.yml
+        path: /etc/systemd/system/node_exporter.service
       register: sys
     
-    - name: prometheus is installed
+    - name: node_exporter is installed
       debug:
-        msg: prometheus is installed
+        msg: node_exporter is installed
       when: sys.stat.exists
 
-    - name: prometheus is NOT installed
+    - name: node_exporter is NOT installed
       debug:
-        msg: prometheus is installed
+        msg: node_exporter is NOT installed
       when: not sys.stat.exists
 
     - block:
         - import_role:
-            name: prometheus
+            name: node_exporter
       when: not sys.stat.exists

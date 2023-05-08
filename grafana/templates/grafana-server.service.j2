@@ -1,9 +1,7 @@
 [Unit]
 Description=Grafana instance
-Documentation={{ grafana_documentation_link }}
 Wants=network-online.target
 After=network-online.target
-After=postgresql.service mariadb.service mysql.service
 
 [Service]
 EnvironmentFile=/etc/default/grafana-server

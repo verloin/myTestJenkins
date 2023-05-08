@@ -9,8 +9,18 @@
   tasks:
     - name: Get stats of installed Grafana
       ansible.builtin.stat:
-        path: /etc/gafana/grafana.ini
+        path: /etc/grafana/grafana.ini
       register: sys
+
+    - name: gafana is installed
+      debug:
+        msg: gafana is installed
+      when: sys.stat.exists
+
+    - name: gafana is NOT installed
+      debug:
+        msg: gafana is installed
+      when: not sys.stat.exists
 
     - block:
         - import_role:

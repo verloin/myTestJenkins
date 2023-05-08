@@ -1,10 +1,19 @@
 [servers]
 prometheus ansible_host=10.0.0.109
 grafana ansible_host=10.0.0.109
-
+nexus ansible_host=10.0.0.116
+kafka01 ansible_host=10.0.0.113
+kafka02 ansible_host=10.0.0.114
+kafka03 ansible_host=10.0.0.115
 
 [prometheus]
 prometheus
 
 [grafana]
 grafana
+
+[nexus]
+nexus
+
+[kafka]
+kafka[01:03]
