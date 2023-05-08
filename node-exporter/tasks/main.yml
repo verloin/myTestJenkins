@@ -1,0 +1,11 @@
+---
+
+- name: NODE-EXPORTER | install
+  import_tasks: install.yml
+  tags:
+    - install
+
+- name: NODE-EXPORTER | configure
+  import_tasks: configure.yml
+  tags:
+    - configure
