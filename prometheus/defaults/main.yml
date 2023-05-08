@@ -1,4 +1,4 @@
 ---
 monitoring_group: local
-prometheus_version: 2.44.0
+prometheus_version: 2.44.0-rc.1
 prometheus_retention_time: "15d"

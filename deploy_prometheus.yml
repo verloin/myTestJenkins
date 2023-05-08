@@ -7,13 +7,12 @@
       - prometheus
 
   tasks:
-    - name: "Check if listed package is installed or not on Debian Linux family"
-      command: dpkg-query -l "{{ item }}"
-      loop: "{{ package_names }}"
-      register: debian_package_check
-      when: ansible_facts['os_family'] == "Debian"
+    - name: Get stats of installed Prometheus
+      ansible.builtin.stat:
+        path: /etc/prometheus/prometheus.yml
+      register: exists
 
     - block:
         - import_role:
             name: prometheus
-      when: debian_package_check is failed
+      when: exists.stat.exists is not defined

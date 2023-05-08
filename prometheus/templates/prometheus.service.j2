@@ -8,6 +8,9 @@ After=network-online.target
 Type=simple
 User=root
 Group=root
+SyslogIdentifier=prometheus
+Restart=always
+
 ExecReload=/bin/kill -HUP $MAINPID
 ExecStart=/opt/prometheus/prometheus \
   --config.file=/etc/prometheus/prometheus.yml \
@@ -17,9 +20,6 @@ ExecStart=/opt/prometheus/prometheus \
   --web.console.libraries=/etc/prometheus/console_libraries \
   --web.listen-address=0.0.0.0:9090 \
   --web.external-url=
-
-SyslogIdentifier=prometheus
-Restart=always
 
 [Install]
 WantedBy=multi-user.target
